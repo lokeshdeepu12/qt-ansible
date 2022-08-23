@@ -22,6 +22,12 @@
       ansible.builtin.get_url:
         dest: /tmp
         url: "{{ tomcat_url }}"
+    - name: UnZip Tomcat .tar.gz file
+      ansible.builtin.unarchive:
+        src: /tmp
+        dest: "{{ tomcat_home_directory }}"
+        remote_src: yes
+
 
 
         
