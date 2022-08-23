@@ -3,9 +3,19 @@
   become: yes
   hosts: app_server
   tasks:
+  vars:
+    tomcat_user: tomcat
+    tomcat_home_directory: /opt/tomcat
+    tomcat_shell_directory: /bin/false
     - name: Install Java 11
       ansible.builtin.package:
         name: openjdk-11-jdk
         update_cache: yes
         state: present
+    - name: Create Tomcat User
+      ansible.builtin.user:
+        name: "{{ tomcat_user }}"
+        group: "{{ tomcat_user }}"
+        home: "{{ tomcat_home_directory }}"
+        shell: "{{ tomcat_shell_directory }}"
         
