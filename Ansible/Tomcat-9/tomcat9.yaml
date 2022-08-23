@@ -2,11 +2,11 @@
 - name: Install Tomcat-9
   become: yes
   hosts: app_server
-  tasks:
   vars:
     tomcat_user: tomcat
     tomcat_home_directory: /opt/tomcat
     tomcat_shell_directory: /bin/false
+  tasks:
     - name: Install Java 11
       ansible.builtin.package:
         name: openjdk-11-jdk
