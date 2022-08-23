@@ -7,5 +7,5 @@
       ansible.builtin.package:
         name: openjdk-11-jdk
         update_cache: yes
-        state: yes
+        state: present
         
