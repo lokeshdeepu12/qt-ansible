@@ -1,0 +1,27 @@
+---
+- name: Install httpd on CentOs
+  become: yes
+  hosts: all
+  vars:
+    package: httpd
+    php:
+      - php
+      - php-mysql
+  tasks:
+    - name: update & Install httpd
+      ansible.builtin.yum:
+        name: "{{ package }}"
+        state: present
+    - name: Install php and php-mysql
+      ansible.builtin.yum:
+        name: "{{ php }}"
+        state: present
+    - name: Copy PHP file in httpd
+      ansible.builtin.copy:
+        src: /home/ansible/basic.php
+        dest: /var/www/html/info3.php
+    - name: enable and start httpd
+      ansible.builtin.systemd:
+        name: "{{ package }}"
+        enabled: yes
+        state: started

@@ -1,0 +1,11 @@
+---
+- name: Install Tomcat-9
+  become: yes
+  hosts: app-server
+  tasks:
+    - name: Install Java 11
+      ansible.builtin.package:
+        name: openjdk-11-jdk
+        update_cache: yes
+        state: yes
+        

@@ -1,0 +1,47 @@
+---
+- name: Install PHP Packgae
+  become: yes
+  hosts: all
+  tasks:
+    - name: apt-update and install apache2
+      ansible.builtin.apt:
+        name: apache2
+        update_cache: yes
+        state: present
+    - name: install php packages
+      ansible.builtin.apt:
+        name: 
+          - php
+          - libapache2-mod-php
+          - php-mysql
+        state: present
+    - name: Copy File in the ansible playbook
+      ansible.builtin.copy:
+        src: basic.php
+        dest: /var/www/html/info2.php
+    - name: start apache service
+      ansible.builtin.service:
+        name: apache2
+        state: started
+        enabled: yes
+    # - name: install apache2 php libraries
+    #   ansible.builtin.apt:
+    #     name: libapache2-mod-php
+    #     state: present
+    # - name: install php-mysql
+    #   ansible.builtin.apt:
+    #     name: php-mysql
+    #     state: present
+    # - name: create php file
+    #   ansible.builtin.lineinfile:
+    #     path: /var/www/html/info.php
+    #     create: yes
+    #     line: <?php phpinfo( ); ?>
+    #     state: present
+    # - name: enable apache2
+    #   community.general.apache2_module:
+    #     state: present
+    #     name: wsgi
+
+
+      

@@ -1,0 +1,20 @@
+---
+- name: apache-server-webpage
+  become: yes
+  hosts: all
+  tasks:
+    - name: to install apache-2 webserver
+      ansible.builtin.apt:
+        name: apache2
+        update_cache: yes
+        state: present
+    # - name: to create file in ansible
+    #   ansible.builtin.file module:
+    #     path: /var/html/info.html
+    #     state: touch
+    - name: to create file and insert content
+      ansible.builtin.lineinfile:
+        create: yes
+        path: /var/www/html/info.html
+        state: present
+        line: '</h1> Hello World </h1>'
