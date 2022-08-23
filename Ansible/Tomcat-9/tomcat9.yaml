@@ -20,8 +20,8 @@
         shell: "{{ tomcat_shell_directory }}"
     - name: Download Tomcat 9
       ansible.builtin.get_url:
-      dest: /tmp
-      url: "{{ tomcat_url }}"
+        dest: /tmp
+        url: "{{ tomcat_url }}"
 
 
         
