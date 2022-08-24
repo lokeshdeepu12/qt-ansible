@@ -41,7 +41,7 @@
         recurse: yes
         owner: "{{ tomcat_user }}"
         group: "{{ tomcat_user }}"
-    - name: Give Executable Permissions to all shell scripts
+  - name: Give Executable Permissions to all shell scripts
       ansible.buitin.file:
         path: "{{ item }}"
         mode: "+x"
