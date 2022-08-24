@@ -46,4 +46,4 @@
         path: "{{ item }}"
         mode: "+x"
       with_fileglob:
-      - "{{ tomcat_home_directory }}/latest/bin/*.sh"
+        - "{{ tomcat_home_directory }}/latest/bin/*.sh"
