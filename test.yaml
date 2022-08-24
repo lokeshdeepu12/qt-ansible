@@ -1,0 +1,27 @@
+---
+- name: create a test file using loops
+  become: no
+  hosts: all
+  # vars:
+  #   files:
+  #   - 1.txt
+  #   - 2.txt
+  #   - 3.txt
+  tasks:
+  # - name: create test file
+  #   ansible.builtin.file:
+  #     name: "{{ item }}"
+  #     state: file
+  #     path: /tmp/test/
+  #   loop: "{{ files }}"
+    # - name: print all .sh files
+    #   ansible.builtin.debug:
+    #     msg: ".sh"
+    #   with_fileglob:
+    #     - /tmp/tests/*.sh
+    - name: give executable permissions to all shell scripts\
+      ansible.builtin.file:
+        path: "{{ item }}"
+        mode: "-x"
+      with_fileglob:
+        - /tmp/tests/*.sh
