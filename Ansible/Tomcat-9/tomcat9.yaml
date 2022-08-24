@@ -37,12 +37,12 @@
     - name: Recursively change ownership of a directory
       ansible.builtin.file:
         path: "{{ tomcat_home_directory }}"
-        state: directory
         recurse: yes
         owner: "{{ tomcat_user }}"
         group: "{{ tomcat_user }}"
+        state: directory
     - name: Give Executable Permissions to all shell scripts
-      ansible.buitin.file:
+      ansible.builtin.file:
         path: "{{ item }}"
         mode: "+x"
       with_fileglob:
