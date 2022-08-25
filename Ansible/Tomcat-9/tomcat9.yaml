@@ -67,14 +67,13 @@
         dest: "{{ tomcat_users_file_location }}"
     - name: Copy manager-app context file
       ansible.builtin.copy:
-        src: tomcat-users.xml
+        src: manager-context.xml
         dest: "{{ tomcat_manager_app_file_location }}"
     - name: Copy host-manager-app context file
       ansible.builtin.copy:
-        src: tomcat-users.xml
+        src: host-manager-context.xml
         dest: "{{ tomcat_host_manager_app_file_location }}"
     - name: restart Tomcat-9 Service
       ansible.builtin.systemd:
         name: tomcat.service
         state: restarted
-        
