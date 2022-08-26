@@ -26,6 +26,8 @@
       ansible.builtin.get_url:
         dest: /tmp
         url: "{{ tomcat_url }}"
+      notify:
+        - UnZip Tomcat .tar.gz file
     - name: Flush Handlers  
       meta: flush_handlers 
     - name: Create Symbolic link
