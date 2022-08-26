@@ -31,8 +31,8 @@
       notify:
         - UnZip Tomcat .tar.gz file
 
-    - name: Flush Handlers  
-      meta: flush_handlers
+    # - name: Flush Handlers  
+    #   meta: flush_handlers
 
     - name: Create Symbolic link
       ansible.builtin.file:
@@ -41,9 +41,6 @@
         owner: "{{ tomcat_user }}"
         group: "{{ tomcat_user }}"
         state: link
-
-    - name: Flush Handlers  
-      meta: flush_handlers    
 
     - name: Recursively change ownership of a directory
       ansible.builtin.file:
@@ -80,8 +77,8 @@
       notify:
         - restart Tomcat-9 Service
 
-    - name: Flush Handlers  
-      meta: flush_handlers
+    # - name: Flush Handlers  
+    #   meta: flush_handlers
 
     - name: Copy manager-app context file
       ansible.builtin.copy:
@@ -91,8 +88,8 @@
       notify:
         - restart Tomcat-9 Service
     
-    - name: Flush Handlers  
-      meta: flush_handlers
+    # - name: Flush Handlers  
+    #   meta: flush_handlers
 
     - name: Copy host-manager-app context file
       ansible.builtin.copy:
@@ -101,9 +98,9 @@
         dest: "{{ tomcat_host_manager_app_file_location }}"
       notify:
         - restart Tomcat-9 Service
-        
-    - name: Flush Handlers  
-      meta: flush_handlers  
+
+    # - name: Flush Handlers  
+    #   meta: flush_handlers  
 
   handlers:
     - name: restart Tomcat-9 Service
