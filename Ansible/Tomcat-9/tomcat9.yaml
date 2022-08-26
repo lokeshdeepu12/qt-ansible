@@ -11,16 +11,16 @@
     tomcat_users_file_location: /opt/tomcat/latest/conf/tomcat-users.xml
     tomcat_manager_app_file_location: /opt/tomcat/latest/webapps/manager/META-INF/context.xml
     tomcat_host_manager_app_file_location: /opt/tomcat/latest/webapps/host-manager/META-INF/context.xml
-  # when:
-  #   - ansible_facts["distribution"]== "Ubuntu"  
+  when:
+    - ansible_facts["distribution"]== "Ubuntu"  
   tasks:
     - name: Install Java 11
       ansible.builtin.apt:
         name: openjdk-11-jdk
         update_cache: yes
         state: present
-      when:
-        - ansible_facts["distribution"]== "Ubuntu"  
+      # when:
+      #   - ansible_facts["distribution"]== "Ubuntu"  
 
     - name: Create Tomcat User
       ansible.builtin.user:
