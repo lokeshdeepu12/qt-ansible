@@ -17,19 +17,23 @@
         name: openjdk-11-jdk
         update_cache: yes
         state: present
+
     - name: Create Tomcat User
       ansible.builtin.user:
         name: "{{ tomcat_user }}"
         home: "{{ tomcat_home_directory }}"
         shell: "{{ tomcat_shell_directory }}"
+
     - name: Download Tomcat 9
       ansible.builtin.get_url:
         dest: /tmp
         url: "{{ tomcat_url }}"
       notify:
         - UnZip Tomcat .tar.gz file
+
     - name: Flush Handlers  
-      meta: flush_handlers 
+      meta: flush_handlers
+
     - name: Create Symbolic link
       ansible.builtin.file:
         src: "{{ tomcat_home_directory }}/apache-tomcat-9.0.65"
@@ -37,8 +41,10 @@
         owner: "{{ tomcat_user }}"
         group: "{{ tomcat_user }}"
         state: link
+
     - name: Flush Handlers  
       meta: flush_handlers    
+
     - name: Recursively change ownership of a directory
       ansible.builtin.file:
         path: "{{ tomcat_home_directory }}"
@@ -46,45 +52,57 @@
         owner: "{{ tomcat_user }}"
         group: "{{ tomcat_user }}"
         state: directory
+
     - name: Give Executable Permissions to all shell scripts
       ansible.builtin.file:
         path: "{{ item }}"
         mode: "+x"
       with_fileglob:
         - "{{ tomcat_home_directory }}/latest/bin/*.sh"
+
     - name: Copy Tomcat Service file
       ansible.builtin.copy:
         src: tomcat.service
         dest: "{{ tomcat_service_file_location }}"
+
     - name: Start Tomcat Service
       ansible.builtin.systemd:
         name: tomcat.service
         daemon_reload: yes
         enabled: yes
         state: started
+
     - name: Copy Users file
       ansible.builtin.copy:
         src: tomcat-users.xml
-        dest: "{{ tomcat_users_file_location }}"
+        dest: /tmp/
+        #dest: "{{ tomcat_users_file_location }}"
       notify:
-          - restart Tomcat-9 Service
+        - restart Tomcat-9 Service
+        
+    - name: Flush Handlers  
+      meta: flush_handlers
+
     - name: Copy manager-app context file
       ansible.builtin.copy:
         src: manager-context.xml
         dest: "{{ tomcat_manager_app_file_location }}"
       notify:
-          - restart Tomcat-9 Service
+        - restart Tomcat-9 Service
+
     - name: Copy host-manager-app context file
       ansible.builtin.copy:
         src: host-manager-context.xml
         dest: "{{ tomcat_host_manager_app_file_location }}"
       notify:
         - restart Tomcat-9 Service
+
   handlers:
     - name: restart Tomcat-9 Service
       ansible.builtin.systemd:
         name: tomcat.service
         state: restarted
+
     - name: UnZip Tomcat .tar.gz file
       ansible.builtin.unarchive:
         src: /tmp/apache-tomcat-9.0.65.tar.gz
