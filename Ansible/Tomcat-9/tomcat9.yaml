@@ -75,8 +75,8 @@
     - name: Copy Users file
       ansible.builtin.copy:
         src: tomcat-users.xml
-        dest: /tmp/
-        #dest: "{{ tomcat_users_file_location }}"
+        #dest: /tmp/
+        dest: "{{ tomcat_users_file_location }}"
       notify:
         - restart Tomcat-9 Service
 
@@ -86,18 +86,24 @@
     - name: Copy manager-app context file
       ansible.builtin.copy:
         src: manager-context.xml
-        dest: /tmp/
-        #dest: "{{ tomcat_manager_app_file_location }}"
+        #dest: /tmp/
+        dest: "{{ tomcat_manager_app_file_location }}"
       notify:
         - restart Tomcat-9 Service
+    
+    - name: Flush Handlers  
+      meta: flush_handlers
 
     - name: Copy host-manager-app context file
       ansible.builtin.copy:
         src: host-manager-context.xml
-        dest: /tmp/
-        #dest: "{{ tomcat_host_manager_app_file_location }}"
+        #dest: /tmp/
+        dest: "{{ tomcat_host_manager_app_file_location }}"
       notify:
         - restart Tomcat-9 Service
+        
+    - name: Flush Handlers  
+      meta: flush_handlers  
 
   handlers:
     - name: restart Tomcat-9 Service
