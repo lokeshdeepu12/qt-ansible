@@ -34,7 +34,9 @@
         dest: "{{ tomcat_home_directory }}/latest"
         owner: "{{ tomcat_user }}"
         group: "{{ tomcat_user }}"
-        state: link  
+        state: link
+    - name: Flush Handlers  
+      meta: flush_handlers    
     - name: Recursively change ownership of a directory
       ansible.builtin.file:
         path: "{{ tomcat_home_directory }}"
