@@ -11,8 +11,6 @@
     tomcat_users_file_location: /opt/tomcat/latest/conf/tomcat-users.xml
     tomcat_manager_app_file_location: /opt/tomcat/latest/webapps/manager/META-INF/context.xml
     tomcat_host_manager_app_file_location: /opt/tomcat/latest/webapps/host-manager/META-INF/context.xml
-  when:
-    - ansible_facts["distribution"]== "Ubuntu"  
   tasks:
     - name: Install Java 11
       ansible.builtin.apt:
