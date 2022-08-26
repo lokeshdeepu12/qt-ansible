@@ -13,10 +13,12 @@
     tomcat_host_manager_app_file_location: /opt/tomcat/latest/webapps/host-manager/META-INF/context.xml
   tasks:
     - name: Install Java 11
-      ansible.builtin.package:
+      ansible.builtin.apt:
         name: openjdk-11-jdk
         update_cache: yes
         state: present
+      when:
+        - ansible_facts["distribution"]== "Ubuntu"  
 
     - name: Create Tomcat User
       ansible.builtin.user:
