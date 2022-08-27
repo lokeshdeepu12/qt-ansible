@@ -4,4 +4,4 @@ node1@172.31.86.107
 node2@172.31.93.91
 [web]
 node1@172.31.86.107 java_package="java-1.8.0-openjdk-devel"
-node2@172.31.93.91  java_package="openjdk-11-jdk", state_file="present"
+node2@172.31.93.91  java_package="openjdk-11-jdk"; state_file="present"
