@@ -18,7 +18,16 @@
         update_cache: yes
         state: present
       when:
-        - ansible_facts["distribution"]== "operating_system"  
+        - ansible_facts["distribution"]== "Ubuntu"
+
+    - name: Install Java 11
+      ansible.builtin.package:
+        name: "{{ java_package }}"
+        update_cache: yes
+        state: "{{ state_file }}"
+      when:
+        - ansible_facts["distribution"]== "CentOs"  
+
 
     - name: Create Tomcat User
       ansible.builtin.user:
