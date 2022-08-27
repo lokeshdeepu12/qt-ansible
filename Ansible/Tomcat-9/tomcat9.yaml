@@ -24,7 +24,7 @@
       ansible.builtin.package:
         name: "{{ java_package }}"
         update_cache: yes
-        state: "{{ state_file }}"
+        state: present
       when:
         - ansible_facts["distribution"]== "CentOs"  
 
