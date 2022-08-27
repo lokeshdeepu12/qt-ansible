@@ -18,7 +18,7 @@
         update_cache: yes
         state: present
       when:
-        - ansible_facts["distribution"]== " operating_system "  
+        - ansible_facts["distribution"]== operating_system  
 
     - name: Create Tomcat User
       ansible.builtin.user:
