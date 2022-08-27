@@ -12,6 +12,16 @@
     tomcat_manager_app_file_location: /opt/tomcat/latest/webapps/manager/META-INF/context.xml
     tomcat_host_manager_app_file_location: /opt/tomcat/latest/webapps/host-manager/META-INF/context.xml
   tasks:
+    - name: Fail on Unsupported OS
+      ansible.builtin.fail:
+        msg: "This Playbook supports only Ubuntu and CentOs"
+      when:
+        - ansible_facts["distribution"] != "Ubuntu"
+        - ansible_facts["distribution"] != "CentOS"
+
+    - ansible.buitin.debug:
+        msg: Installing Java "{{ java_package }}" on Ubuntu
+
     - name: Install Java 11
       ansible.builtin.package:
         name: "{{ java_package }}"
@@ -20,6 +30,8 @@
       when:
         - ansible_facts["distribution"]== "Ubuntu"
 
+    - ansible.buitin.debug:
+        msg: Installing Java "{{ java_package }}" on CentOs
     - name: Install Java 11
       ansible.builtin.package:
         name: "{{ java_package }}"
@@ -28,13 +40,16 @@
       when:
         - ansible_facts["distribution"]== "CentOS"  
 
-
+    - ansible.buitin.debug:
+        msg: Creating "{{ tomcat_user }}" in "{{ tomcat_home_directory }}" and "{{ tomcat_shell_directory }}"
     - name: Create Tomcat User
       ansible.builtin.user:
         name: "{{ tomcat_user }}"
         home: "{{ tomcat_home_directory }}"
         shell: "{{ tomcat_shell_directory }}"
-
+    
+    - ansible.buitin.debug:
+        msg: Downloading Tomcat9 from "{{ tomcat_url }}" to /tmp
     - name: Download Tomcat 9
       ansible.builtin.get_url:
         dest: /tmp
@@ -44,7 +59,9 @@
 
     - name: Flush Handlers  
       meta: flush_handlers
-
+    
+    - ansible.buitin.debug:
+        msg: Crating Symbolic link from "{{ tomcat_home_directory }}/apache-tomcat-9.0.65" to "{{ tomcat_home_directory }}/latest" with owner as "{{ tomcat_user }}"
     - name: Create Symbolic link
       ansible.builtin.file:
         src: "{{ tomcat_home_directory }}/apache-tomcat-9.0.65"
@@ -52,7 +69,9 @@
         owner: "{{ tomcat_user }}"
         group: "{{ tomcat_user }}"
         state: link
-
+    
+    - ansible.buitin.debug:
+        msg: Changing the ownership of "{{ tomcat_home_directory }}" from root to "{{ tomcat_user }}"
     - name: Recursively change ownership of a directory
       ansible.builtin.file:
         path: "{{ tomcat_home_directory }}"
@@ -61,6 +80,8 @@
         group: "{{ tomcat_user }}"
         state: directory
 
+    - ansible.buitin.debug:
+        msg: Giving Executable Permissions to all the shell scripts present in "{{ item }}" 
     - name: Give Executable Permissions to all shell scripts
       ansible.builtin.file:
         path: "{{ item }}"
@@ -92,35 +113,23 @@
     - name: Copy Users file
       ansible.builtin.copy:
         src: tomcat-users.xml
-        #dest: /tmp/
         dest: "{{ tomcat_users_file_location }}"
       notify:
         - restart Tomcat-9 Service
 
-    # - name: Flush Handlers  
-    #   meta: flush_handlers
-
     - name: Copy manager-app context file
       ansible.builtin.copy:
         src: manager-context.xml
-        #dest: /tmp/
         dest: "{{ tomcat_manager_app_file_location }}"
       notify:
         - restart Tomcat-9 Service
-    
-    # - name: Flush Handlers  
-    #   meta: flush_handlers
 
     - name: Copy host-manager-app context file
       ansible.builtin.copy:
         src: host-manager-context.xml
-        #dest: /tmp/
         dest: "{{ tomcat_host_manager_app_file_location }}"
       notify:
         - restart Tomcat-9 Service
-
-    # - name: Flush Handlers  
-    #   meta: flush_handlers  
 
   handlers:
     - name: restart Tomcat-9 Service
