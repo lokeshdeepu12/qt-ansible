@@ -20,8 +20,7 @@
         - ansible_facts["distribution"] != "CentOS"
 
     - ansible.buitin.debug:
-        msg: Installing Java "{{ java_package }}" on Ubuntu
-
+        msg: "Installing Java {{ java_package }} on Ubuntu"
     - name: Install Java 11
       ansible.builtin.package:
         name: "{{ java_package }}"
