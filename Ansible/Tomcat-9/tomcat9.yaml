@@ -80,7 +80,7 @@
         state: directory
 
     - ansible.builtin.debug:
-        msg: "Giving Executable Permissions to all the shell scripts present in {{ item }}"
+        msg: "Giving Executable Permissions to all the shell scripts present in {{ tomcat_home_directory }}/latest/bin/*.sh"
     - name: Give Executable Permissions to all shell scripts
       ansible.builtin.file:
         path: "{{ item }}"
