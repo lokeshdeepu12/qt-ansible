@@ -19,7 +19,7 @@
         - ansible_facts["distribution"] != "Ubuntu"
         - ansible_facts["distribution"] != "CentOS"
 
-    - ansible.buitin.debug:
+    - ansible.builtin.debug:
         msg: "Installing Java {{ java_package }} on Ubuntu"
     - name: Install Java 11
       ansible.builtin.package:
@@ -29,7 +29,7 @@
       when:
         - ansible_facts["distribution"]== "Ubuntu"
 
-    - ansible.buitin.debug:
+    - ansible.builtin.debug:
         msg: Installing Java "{{ java_package }}" on CentOs
     - name: Install Java 11
       ansible.builtin.package:
@@ -39,7 +39,7 @@
       when:
         - ansible_facts["distribution"]== "CentOS"  
 
-    - ansible.buitin.debug:
+    - ansible.builtin.debug:
         msg: Creating "{{ tomcat_user }}" in "{{ tomcat_home_directory }}" and "{{ tomcat_shell_directory }}"
     - name: Create Tomcat User
       ansible.builtin.user:
@@ -47,7 +47,7 @@
         home: "{{ tomcat_home_directory }}"
         shell: "{{ tomcat_shell_directory }}"
     
-    - ansible.buitin.debug:
+    - ansible.builtin.debug:
         msg: Downloading Tomcat9 from "{{ tomcat_url }}" to /tmp
     - name: Download Tomcat 9
       ansible.builtin.get_url:
@@ -59,7 +59,7 @@
     - name: Flush Handlers  
       meta: flush_handlers
     
-    - ansible.buitin.debug:
+    - ansible.builtin.debug:
         msg: Crating Symbolic link from "{{ tomcat_home_directory }}/apache-tomcat-9.0.65" to "{{ tomcat_home_directory }}/latest" with owner as "{{ tomcat_user }}"
     - name: Create Symbolic link
       ansible.builtin.file:
@@ -69,7 +69,7 @@
         group: "{{ tomcat_user }}"
         state: link
     
-    - ansible.buitin.debug:
+    - ansible.builtin.debug:
         msg: Changing the ownership of "{{ tomcat_home_directory }}" from root to "{{ tomcat_user }}"
     - name: Recursively change ownership of a directory
       ansible.builtin.file:
@@ -79,7 +79,7 @@
         group: "{{ tomcat_user }}"
         state: directory
 
-    - ansible.buitin.debug:
+    - ansible.builtin.debug:
         msg: Giving Executable Permissions to all the shell scripts present in "{{ item }}" 
     - name: Give Executable Permissions to all shell scripts
       ansible.builtin.file:
