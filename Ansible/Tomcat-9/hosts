@@ -1,9 +1,9 @@
 [dev_host]
-node1@172.31.86.107 java_package="java-11-openjdk-devel" JAVA_HOME_PATH=/usr/lib/jvm/jre JAVA_OPTS_PATH=Djava.security.egd=file:///dev/urandom
+node1@172.31.86.107 java_package="java-11-openjdk-devel" JAVA_HOME_PATH="/usr/lib/jvm/jre" JAVA_OPTS_PATH="Djava.security.egd=file:///dev/urandom"
 [app_server]
 node2@172.31.93.91 java_package="openjdk-11-jdk" 
 [test]
-test@172.31.87.157 java_package="openjdk-11-jdk"  JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 JAVA_OPTS=Djava.security.egd=file:///dev/urandom -Djava.awt.headless=true
+test@172.31.87.157 java_package="openjdk-11-jdk"  JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64" JAVA_OPTS=Djava.security.egd=file:///dev/urandom -Djava.awt.headless=true
 [web]
 node1@172.31.86.107 java_package="java-11-openjdk-devel"  JAVA_HOME_PATH=/usr/lib/jvm/jre JAVA_OPTS_PATH=Djava.security.egd=file:///dev/urandom
 node2@172.31.93.91  java_package="openjdk-11-jdk"  JAVA_HOME_PATH=/usr/lib/jvm/java-11-openjdk-amd64 JAVA_OPTS_PATH=Djava.security.egd=file:///dev/urandom -Djava.awt.headless=true
