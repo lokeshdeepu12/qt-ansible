@@ -1,5 +1,5 @@
 [dev_host]
-node1@172.31.86.107 java_package="java-11-openjdk-devel" JAVA_HOME_PATH="/usr/lib/jvm/jre" JAVA_OPTS_PATH="Djava.security.egd=file:///dev/urandom"
+node1@172.31.86.107 java_package="java-11-openjdk-devel"
 [app_server]
 node2@172.31.93.91 java_package="openjdk-11-jdk" 
 [test]
