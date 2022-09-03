@@ -3,5 +3,5 @@ node1@172.31.86.107
 [app_server]
 node2@172.31.93.91
 [web]
-node1@172.31.86.107 java_package="java-11-openjdk-devel" service_file="centos.service"
-node2@172.31.93.91  java_package="openjdk-11-jdk" service_file="tomcat.service"
+node1@172.31.86.107 java_package="java-11-openjdk-devel" service_file="centos.service" JAVA_HOME=/usr/lib/jvm/jre JAVA_OPTS=Djava.security.egd=file:///dev/urandom
+node2@172.31.93.91  java_package="openjdk-11-jdk" service_file="tomcat.service" JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 JAVA_OPTS=Djava.security.egd=file:///dev/urandom -Djava.awt.headless=true
