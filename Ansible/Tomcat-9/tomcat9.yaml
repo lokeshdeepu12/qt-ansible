@@ -92,15 +92,6 @@
       ansible.builtin.template:
         src: tomcat.service.j2
         dest: "{{ tomcat_service_file_location }}"
-      when:
-        - ansible_facts["distribution"]== "Ubuntu"
-
-    - name: Copy Tomcat Service file
-      ansible.builtin.copy:
-        src: "{{ service_file }}"
-        dest: "{{ tomcat_service_file_location }}"
-      when:
-        - ansible_facts["distribution"]== "CentOS"
 
     - name: Start Tomcat Service
       ansible.builtin.systemd:
