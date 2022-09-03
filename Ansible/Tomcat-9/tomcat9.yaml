@@ -13,6 +13,7 @@
     tomcat_host_manager_app_file_location: /opt/tomcat/latest/webapps/host-manager/META-INF/context.xml
     ansible_username: rowdy
     ansible_password: boyz
+    all_hosts: ".*"
   tasks:
     - name: Fail on Unsupported OS
       ansible.builtin.fail:
@@ -110,15 +111,15 @@
         - restart Tomcat-9 Service
 
     - name: Copy manager-app context file
-      ansible.builtin.copy:
-        src: manager-context.xml
+      ansible.builtin.template:
+        src: context.xml.j2
         dest: "{{ tomcat_manager_app_file_location }}"
       notify:
         - restart Tomcat-9 Service
 
     - name: Copy host-manager-app context file
-      ansible.builtin.copy:
-        src: host-manager-context.xml
+      ansible.builtin.template:
+        src: context.xml.j2
         dest: "{{ tomcat_host_manager_app_file_location }}"
       notify:
         - restart Tomcat-9 Service
