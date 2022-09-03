@@ -1,7 +1,7 @@
 ---
 - name: Install Tomcat-9
   become: yes
-  hosts: dev_host
+  hosts: web
   vars:
     tomcat_user: tomcat
     tomcat_home_directory: /opt/tomcat
@@ -94,8 +94,6 @@
       ansible.builtin.template:
         src: tomcat.service.j2
         dest: "{{ tomcat_service_file_location }}"
-      # notify: 
-      #   - Start Tomcat Service
 
     - name: Start Tomcat Service
       ansible.builtin.systemd:
