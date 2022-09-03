@@ -56,6 +56,6 @@
 
 <role rolename="admin-gui"/>
 <role rolename="manager-gui"/>
-<user username="lokesh" password="admin" roles="admin-gui,manager-gui"/>
+<user username="{{ ansible_username }}" password="{{ ansible_password }}" roles="admin-gui,manager-gui"/>
 
 </tomcat-users>

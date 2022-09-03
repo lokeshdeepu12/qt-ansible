@@ -1,7 +1,7 @@
 ---
 - name: Install Tomcat-9
   become: yes
-  hosts: test
+  hosts: web
   vars:
     tomcat_user: tomcat
     tomcat_home_directory: /opt/tomcat
@@ -11,6 +11,8 @@
     tomcat_users_file_location: /opt/tomcat/latest/conf/tomcat-users.xml
     tomcat_manager_app_file_location: /opt/tomcat/latest/webapps/manager/META-INF/context.xml
     tomcat_host_manager_app_file_location: /opt/tomcat/latest/webapps/host-manager/META-INF/context.xml
+    ansible_username: rowdy
+    ansible_password: boyz
   tasks:
     - name: Fail on Unsupported OS
       ansible.builtin.fail:
@@ -97,8 +99,8 @@
 
 
     - name: Copy Users file
-      ansible.builtin.copy:
-        src: tomcat-users.xml
+      ansible.builtin.template:
+        src: tomcat-users.xml.j2
         dest: "{{ tomcat_users_file_location }}"
       notify:
         - restart Tomcat-9 Service
