@@ -3,7 +3,7 @@ node1@172.31.86.107
 [app_server]
 node2@172.31.93.91
 [test]
-test@172.31.87.157
+test@172.31.87.157 java_package="openjdk-11-jdk"  JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 JAVA_OPTS=Djava.security.egd=file:///dev/urandom -Djava.awt.headless=true
 [web]
 node1@172.31.86.107 java_package="java-11-openjdk-devel"  JAVA_HOME=/usr/lib/jvm/jre JAVA_OPTS=Djava.security.egd=file:///dev/urandom
 node2@172.31.93.91  java_package="openjdk-11-jdk"  JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 JAVA_OPTS=Djava.security.egd=file:///dev/urandom -Djava.awt.headless=true
