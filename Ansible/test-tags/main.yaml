@@ -2,7 +2,7 @@
 - name: Testing Tags
   hosts: all
   become: yes
-  # gather_facts: yes
+  gather_facts: no
   tasks:
     - ansible.builtin.debug:
         msg: "Trying to Install Git on Ubuntu"
