@@ -18,3 +18,9 @@
         msg: "Git Successfully Installed"
       tags:
         - debug
+    - name: Install tree
+      ansible.builtin.package:
+        name: tree
+        state: present
+      tags:
+        - tree
