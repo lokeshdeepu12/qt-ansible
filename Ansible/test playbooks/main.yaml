@@ -1,6 +1,6 @@
 ---
 - name: Testing Tags
-  hosts: all
+  hosts: test
   become: yes
   gather_facts: no
   tasks:

@@ -11,10 +11,7 @@ all:
             java_package: "openjdk-11-jdk"
       test:
         hosts:
-          test@172.31.87.157:
-            java_package: "openjdk-11-jdk"
-            JAVA_HOME: "/usr/lib/jvm/java-11-openjdk-amd64"
-            JAVA_OPTS: "Djava.security.egd=file:///dev/urandom -Djava.awt.headless=true"
+          localhost
       web:
         hosts:
           node1@172.31.86.107:
