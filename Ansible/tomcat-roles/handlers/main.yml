@@ -1,0 +1,11 @@
+---
+- name: restart Tomcat-9 Service
+  ansible.builtin.systemd:
+    name: tomcat.service
+    state: restarted
+
+- name: UnZip Tomcat .tar.gz file
+  ansible.builtin.unarchive:
+    src: /tmp/apache-tomcat-9.0.65.tar.gz
+    dest: "{{ tomcat_home_directory }}"
+    remote_src: yes
