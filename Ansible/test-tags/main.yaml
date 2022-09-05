@@ -13,7 +13,7 @@
         name: git
         # become: yes
       tags:
-        - Git Installation
+        - git_installation
     - ansible.builtin.debug:
         msg: "Git Successfully Installed"
       tags:
