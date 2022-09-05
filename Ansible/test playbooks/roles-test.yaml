@@ -1,0 +1,6 @@
+---
+- name: Test Roles from Greenling Guy
+  become: yes
+  hosts: all
+  roles:
+    role: geerlingguy.mysql
