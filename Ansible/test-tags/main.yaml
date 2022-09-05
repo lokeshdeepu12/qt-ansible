@@ -1,7 +1,8 @@
 ---
 - name: Testing Tags
   hosts: all
-  gather_facts: yes
+  become: yes
+  # gather_facts: yes
   tasks:
     - ansible.builtin.debug:
         msg: "Trying to Install Git on Ubuntu"
@@ -10,7 +11,7 @@
     - name: Install Git
       ansible.builtin.package:
         name: git
-        become: yes
+        # become: yes
       tags:
         - Git Installation
     - ansible.builtin.debug:
