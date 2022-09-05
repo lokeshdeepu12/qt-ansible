@@ -1,6 +1,6 @@
 ---
 - name: Roles to Install Tomcat9
   become: yes
-  hosts: web
+  hosts: test
   roles:
     - role: qt-tomcat
