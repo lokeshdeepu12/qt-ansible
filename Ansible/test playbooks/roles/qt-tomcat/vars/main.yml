@@ -1,5 +1,4 @@
 ---
----
 tomcat_user: tomcat
 tomcat_home_directory: /opt/tomcat
 tomcat_shell_directory: /bin/false
