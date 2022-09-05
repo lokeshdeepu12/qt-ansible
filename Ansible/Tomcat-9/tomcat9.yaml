@@ -111,15 +111,15 @@
         - restart Tomcat-9 Service
 
     - name: Copy manager-app context file
-      ansible.builtin.template:
-        src: context.xml.j2
+      ansible.builtin.copy:
+        src: manager-context.xml
         dest: "{{ tomcat_manager_app_file_location }}"
       notify:
         - restart Tomcat-9 Service
 
     - name: Copy host-manager-app context file
       ansible.builtin.template:
-        src: context.xml.j2
+        src: host-manager-context.xml
         dest: "{{ tomcat_host_manager_app_file_location }}"
       notify:
         - restart Tomcat-9 Service
