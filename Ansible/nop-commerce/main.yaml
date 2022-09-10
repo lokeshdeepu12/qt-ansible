@@ -58,7 +58,7 @@
         path: /var/www/nopCommerce450
         group: www-data
         owner: www-data
-        mode: u+rw,g=xr,o-wx
+        mode: u+rw,g=xr,o=r
         recurse: no
     
     - name: Copy nopCommerce Service File
