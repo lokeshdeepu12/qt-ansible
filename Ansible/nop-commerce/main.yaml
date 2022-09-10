@@ -3,31 +3,32 @@
   become: yes
   hosts: app_server
   vars:
-  tasks:
-    # - name: Download Microsoft Package
-    #   ansible.builtin.get_url:
-    #     url: https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb
-    #     dest: /home/node2/
-
-    # - name: Installing Microsoft Package
-    #   ansible.builtin.dpkg_selections:
-    #     name: packages-microsoft-prod.deb
-    #     selection: install
-    
+  tasks:    
     - name: Download and Install Microsoft Package
       ansible.builtin.apt:
-        # name:
-        #   - apt-transport-https
         deb: https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb
         update_cache: yes
         state: present
-
     - name: Install .NET Core Runtime
       ansible.builtin.apt:
         name:
-          # - apt-transport-https
+          - apt-transport-https
           - aspnetcore-runtime-6.0
         update_cache: yes
         state: present
-    
+    - name: Install Required Packages (my-sql,nginx,unzip)
+      ansible.builtin.package:
+       name:
+        - mysql-server
+        - nginx
+        - unzip
+    - name: Start Nginx Server
+      ansible.builtin.systemd:
+       name: nginx
+       state: started
+       enabled: yes
+    - name: Copy nginx Default Service file
+      ansible.builtin.copy:
+        src: nginx-default-conf
+        dest: /etc/nginx/sites-available/default
 
