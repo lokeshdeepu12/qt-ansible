@@ -22,15 +22,18 @@
         - mysql-server
         - nginx
         - unzip
+
     - name: Start Nginx Server
       ansible.builtin.systemd:
        name: nginx
        state: started
        enabled: yes
+
     - name: Copy nginx Default Service file
       ansible.builtin.copy:
         src: nginx-default-conf
         dest: /etc/nginx/sites-available/default
+
     - name: Create nopCommerce450 Directory
       ansible.builtin.file:
         path: /var/www/nopCommerce450
@@ -57,9 +60,20 @@
         owner: www-data
         mode: g=r,o=r
         recurse: yes
-      # with_fileglob:
-      #   - /var/www/nopCommerce450/
-      # loop: 
-      #   - /var/www/nopCommerce450/bin
-      #   - /var/www/nopCommerce450/logs
     
+    - name: Copy nopCommerce Service File
+      ansible.builtin.copy:
+        src: nopCommerce450.service
+        dest: /etc/systemd/system/nopCommerce450.service
+
+    - name: Start nopCommerce450 Service
+      ansible.builtin.systemd:
+        name: nopCommerce450.service
+        enabled: yes
+        state: started
+
+    - name: Start Nginx Server
+      ansible.builtin.systemd:
+       name: nginx
+       state: restarted
+       enabled: yes
