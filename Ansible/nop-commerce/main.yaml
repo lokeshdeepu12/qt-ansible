@@ -22,12 +22,12 @@
         update_cache: yes
         state: present
 
-    # - name: Install .NET Core Runtime
-    #   ansible.builtin.apt:
-    #     name:
-    #       # - apt-transport-https
-    #       - dotnet6
-    #     update_cache: yes
-    #     state: present
+    - name: Install .NET Core Runtime
+      ansible.builtin.apt:
+        name:
+          # - apt-transport-https
+          - aspnetcore-runtime-6.0
+        update_cache: yes
+        state: present
     
 
