@@ -26,7 +26,7 @@
       ansible.builtin.apt:
         name:
           # - apt-transport-https
-          - aspnetcore-runtime-6.0
+          - dotnet6
         update_cache: yes
         state: present
     
