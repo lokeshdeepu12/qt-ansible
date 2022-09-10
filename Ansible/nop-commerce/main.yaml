@@ -55,11 +55,11 @@
 
     - name: Change Permissions Reccursively
       ansible.builtin.file:
-        path: /var/www/nopCommerce450/
+        path: /var/www/nopCommerce450/*
         group: www-data
         owner: www-data
-        mode: g=r,o=r
-        recurse: no
+        mode: g=rwx,o=rwx
+        recurse: yes
     
     - name: Copy nopCommerce Service File
       ansible.builtin.copy:
