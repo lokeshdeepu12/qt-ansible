@@ -31,6 +31,11 @@
       ansible.builtin.copy:
         src: nginx-default-conf
         dest: /etc/nginx/sites-available/default
+    - name: Create nopCommerce450 Directory
+      ansible.builtin.file:
+        path: /var/www/nopCommerce450
+        state: directory
+
     - name: Unarchive a file that needs to be downloaded (added in 2.0)
       ansible.builtin.unarchive:
         src: https://github.com/nopSolutions/nopCommerce/releases/download/release-4.50.3/nopCommerce_4.50.3_NoSource_linux_x64.zip
