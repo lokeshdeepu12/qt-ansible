@@ -52,4 +52,12 @@
       loop: 
         - /var/www/nopCommerce450/bin
         - /var/www/nopCommerce450/logs
+
+    - name: Create bin and log directory in nopCommerce450 directory
+      ansible.builtin.file:
+        path: /var/www/nopCommerce450
+        state: directory
+        group: www-data
+        owner: www-data
+        mode: "-R"
     
