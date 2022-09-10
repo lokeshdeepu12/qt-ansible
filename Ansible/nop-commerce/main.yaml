@@ -46,6 +46,10 @@
       ansible.builtin.file:
         path: "{{ item }}"
         state: directory
+        group: www-data
+        owner: www-data
+        mode: "-R"
       loop: 
         - /var/www/nopCommerce450/bin
         - /var/www/nopCommerce450/logs
+    
