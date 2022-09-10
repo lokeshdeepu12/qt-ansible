@@ -39,11 +39,11 @@
         path: /var/www/nopCommerce450
         state: directory
 
-    - name: Unarchive a file that needs to be downloaded (added in 2.0)
-      ansible.builtin.unarchive:
-        src: https://github.com/nopSolutions/nopCommerce/releases/download/release-4.50.3/nopCommerce_4.50.3_NoSource_linux_x64.zip
-        dest: /var/www/nopCommerce450
-        remote_src: yes
+    # - name: Unarchive a file that needs to be downloaded (added in 2.0)
+    #   ansible.builtin.unarchive:
+    #     src: https://github.com/nopSolutions/nopCommerce/releases/download/release-4.50.3/nopCommerce_4.50.3_NoSource_linux_x64.zip
+    #     dest: /var/www/nopCommerce450
+    #     remote_src: yes
 
     - name: Create bin and log directory in nopCommerce450 directory
       ansible.builtin.file:
@@ -58,7 +58,7 @@
         path: /var/www/nopCommerce450
         group: www-data
         owner: www-data
-        mode: u+rw,g-wx,o+rwx
+        mode: u-w,g-wx,o+rwx
         recurse: no
     
     - name: Copy nopCommerce Service File
