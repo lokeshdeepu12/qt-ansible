@@ -15,10 +15,11 @@
         selection: install
     
     - name: Install .NET Core Runtime
-      ansible.builtin.package:
+      ansible.builtin.apt:
         name:
           - apt-transport-https
           - aspnetcore-runtime-6.0
+        update_cache: yes
         state: present
     
 
