@@ -42,3 +42,10 @@
         dest: /var/www/nopCommerce450
         remote_src: yes
 
+    - name: Create bin and log directory in nopCommerce450 directory
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+      loop: 
+        - /var/www/nopCommerce450/bin
+        - /var/www/nopCommerce450/logs
