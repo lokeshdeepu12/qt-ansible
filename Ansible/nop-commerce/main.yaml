@@ -26,7 +26,7 @@
     - name: Start Nginx Server
       ansible.builtin.systemd:
        name: nginx
-       state: started
+       state: stopped
        enabled: yes
 
     - name: Copy nginx Default Service file
