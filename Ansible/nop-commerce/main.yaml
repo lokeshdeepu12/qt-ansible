@@ -55,7 +55,7 @@
         path: /var/www/nopCommerce450
         group: www-data
         owner: www-data
-        mode: "-R"
+        mode: g=r,o=r
       # loop: 
       #   - /var/www/nopCommerce450/bin
       #   - /var/www/nopCommerce450/logs
