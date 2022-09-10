@@ -53,13 +53,12 @@
         - /var/www/nopCommerce450/bin
         - /var/www/nopCommerce450/logs
 
-    # - name: Change Permissions Reccursively
-    #   ansible.builtin.file:
-    #     path: /var/www/nopCommerce450
-    #     group: www-data
-    #     owner: www-data
-    #     mode: 755
-    #     recurse: no
+    - name: Change Permissions Reccursively
+      ansible.builtin.file:
+        path: /var/www/nopCommerce450
+        group: www-data
+        owner: www-data
+        recurse: yes
     
     # - name: Copy nopCommerce Service File
     #   ansible.builtin.copy:
