@@ -50,14 +50,15 @@
         - /var/www/nopCommerce450/bin
         - /var/www/nopCommerce450/logs
 
-    - name: Create bin and log directory in nopCommerce450 directory
+    - name: Change Permissions Reccursively
       ansible.builtin.file:
-        path: "{{ item }}"
+        path: /var/www/nopCommerce450/
         group: www-data
         owner: www-data
         mode: g=r,o=r
-      with_fileglob:
-        - /var/www/nopCommerce450/*
+        recurse: yes
+      # with_fileglob:
+      #   - /var/www/nopCommerce450/
       # loop: 
       #   - /var/www/nopCommerce450/bin
       #   - /var/www/nopCommerce450/logs
