@@ -55,7 +55,7 @@
 
     - name: Change Permissions Reccursively
       ansible.builtin.file:
-        path: /var/www/nopCommerce450/
+        path: /var/www/nopCommerce450/*
         group: www-data
         owner: www-data
         mode: g=r,o=r
