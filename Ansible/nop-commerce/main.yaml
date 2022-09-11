@@ -18,11 +18,11 @@
         state: present
     - name: Install Required Packages (my-sql,nginx,unzip)
       ansible.builtin.package:
-       name:
-        - mysql-server
-        - nginx
-        - unzip
-      update_cache: yes
+        name:
+          - mysql-server
+          - nginx
+          - unzip
+        update_cache: yes
 
     - name: Start Nginx Server
       ansible.builtin.systemd:
