@@ -22,6 +22,7 @@
         - mysql-server
         - nginx
         - unzip
+      update_cache: yes
 
     - name: Start Nginx Server
       ansible.builtin.systemd:
