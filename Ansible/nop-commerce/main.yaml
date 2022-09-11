@@ -60,10 +60,10 @@
         owner: www-data
         recurse: yes
     
-    # - name: Copy nopCommerce Service File
-    #   ansible.builtin.copy:
-    #     src: nopCommerce450.service
-    #     dest: /etc/systemd/system/nopCommerce450.service
+    - name: Copy nopCommerce Service File
+      ansible.builtin.copy:
+        src: nopCommerce450.service
+        dest: /etc/systemd/system/nopCommerce450.service
 
     - name: Start nopCommerce450 Service
       ansible.builtin.systemd:
@@ -71,7 +71,7 @@
         enabled: yes
         state: started
 
-    # # - name: Start Nginx Server
-    # #   ansible.builtin.systemd:
-    # #    name: nginx
-    # #    state: restarted
+    - name: Start Nginx Server
+      ansible.builtin.systemd:
+       name: nginx
+       state: restarted
