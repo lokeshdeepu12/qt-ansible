@@ -30,10 +30,10 @@
        state: started
        enabled: yes
 
-    # - name: Copy nginx Default Service file
-    #   ansible.builtin.copy:
-    #     src: nginx-default-conf
-    #     dest: /etc/nginx/sites-available/default
+    - name: Copy nginx Default Service file
+      ansible.builtin.copy:
+        src: nginx-default-conf
+        dest: /etc/nginx/sites-available/default
 
     # - name: Create nopCommerce450 Directory
     #   ansible.builtin.file:
