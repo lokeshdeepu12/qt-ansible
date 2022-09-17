@@ -1,7 +1,7 @@
 ---
 - name: Install nop-commerce
   become: yes
-  hosts: test_2
+  hosts: test
   vars:
   tasks:    
     - name: Download and Install Microsoft Package
