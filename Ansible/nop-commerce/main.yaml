@@ -35,10 +35,10 @@
         src: nginx-default-conf
         dest: /etc/nginx/sites-available/default
 
-    # - name: Create nopCommerce450 Directory
-    #   ansible.builtin.file:
-    #     path: /var/www/nopCommerce450
-    #     state: directory
+    - name: Create nopCommerce450 Directory
+      ansible.builtin.file:
+        path: /var/www/nopCommerce450
+        state: directory
 
     # - name: Unarchive a file that needs to be downloaded (added in 2.0)
     #   ansible.builtin.unarchive:
